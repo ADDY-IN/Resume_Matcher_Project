@@ -1,36 +1,64 @@
-# Resume Matcher Project
+🚀 **Resume Matcher Project**
 
-A tool to match resumes with a job description using semantic and keyword-based similarity.
+This is an AI-powered Python application that intelligently matches resumes with job descriptions (JD) using semantic similarity 🤖 and keyword matching 📌. It helps recruiters shortlist the best-fitting candidates in seconds ⚡.
 
-## Features
+---
 
-- Extracts text from PDF resumes and JD
-- Preprocesses and cleans data
-- Generates embeddings using sentence-transformers
-- Extracts top keywords from JD
-- Combines semantic + keyword scores for matching
-- Outputs results to CSV
+✨ **Features**
 
-## How to Run
+✅ Semantic & Keyword Matching Combined  
+✅ Built with Python, spaCy, and Transformers 🧠  
+✅ PDF to Text Conversion using pdfplumber 📄  
+✅ Final Match Score in % 🔢  
+✅ Outputs Results as CSV 📁  
+✅ Easy to Integrate into Any Frontend or Backend 🔗
 
-1. Clone the repo and navigate to folder  
-2. Create virtual environment and activate:
-python -m venv venv
-venv\Scripts\activate
-3. Install dependencies:
-4. Add all PDFs to `data/` folder  
-5. Run `notebook.ipynb` step-by-step  
-6. Results will be saved in `matching_results.csv`
+---
 
-## Structure
+🔍 **How It Works**
 
-- `data/` – raw PDFs (JD + resumes)  
-- `output/` – extracted text  
-- `processed/` – cleaned text  
-- `notebook.ipynb` – main logic  
-- `requirements.txt` – dependencies  
-- `README.md` – project info
+1️⃣ Upload JD & Resumes in PDF format  
+2️⃣ Extract and Clean Text 📄  
+3️⃣ Generate Embeddings using Sentence Transformers 🔤  
+4️⃣ Extract Keywords from JD using spaCy 🧠  
+5️⃣ Calculate Final Matching Score (Semantic + Keyword) 📊  
+6️⃣ Save Results in CSV with Ranked Matches 📈
 
-## Author
+---
 
-Made by Aditya Kaushik
+🧰 **Tech Stack**
+
+🐍 Python 3.10+  
+📦 sentence-transformers, spaCy, pdfplumber, pandas  
+📊 scikit-learn, numpy  
+💻 Jupyter Notebook  
+☁️ Ready for Flask/FastAPI Integration (Optional)
+
+---
+
+📂 **Project Structure**
+
+Resume_Matcher_Project/
+│
+├── data/ # Input PDFs (Resumes + JD)
+├── output/ # Extracted .txt files
+├── processed/ # Cleaned text files
+├── notebook.ipynb # Core logic (Jupyter Notebook)
+├── matching_results.csv
+├── requirements.txt
+└── README.md
+
+🚀 **Next Improvements**
+
+🔒 Add resume filtering using keyword rules  
+🧠 Enhance model using domain-specific data  
+🌐 Add frontend for JD upload and resume viewing  
+☁️ Deploy on web with FastAPI + Streamlit
+
+---
+
+👨‍💻 **Contributions Welcome!**  
+If you like the project, give it a ⭐ on GitHub.  
+Built with ❤️ by **Aditya Kaushik**
+
+
