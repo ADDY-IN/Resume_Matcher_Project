@@ -1,0 +1,7 @@
+pdfplumber
+spacy
+rapidfuzz
+sentence-transformers
+scikit-learn
+pandas
+numpy
