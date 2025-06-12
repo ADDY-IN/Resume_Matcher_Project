@@ -59,6 +59,6 @@ Resume_Matcher_Project/
 
 👨‍💻 **Contributions Welcome!**  
 If you like the project, give it a ⭐ on GitHub.  
-Built with ❤️ by **Aditya Kaushik**
+Built by **Aditya Kaushik**
 
 
