@@ -99,15 +99,14 @@ stemmer = PorterStemmer()
 stop_words = set(stopwords.words('english'))
 
 def extract_keywords_from_jd(jd_text):
-    jd_text = re.sub(r'[^a-zA-Z0-9 ]', ' ', jd_text)  # Remove special chars
+    jd_text = re.sub(r'[^a-zA-Z0-9 ]', ' ', jd_text) 
     words = word_tokenize(jd_text.lower())
 
     filtered = [word for word in words if word not in stop_words and len(word) > 2]
     stemmed = [stemmer.stem(word) for word in filtered]
 
-    unique_keywords = list(set(filtered))  # remove duplicates
-
-    # Naively extract title and experience from text — tweak if needed
+    unique_keywords = list(set(filtered)) 
+    
     lines = jd_text.lower().split('\n')
     jd_title = ""
     jd_experience = []
@@ -151,17 +150,14 @@ def match_resumes(jd_text, resume_texts, model, weight_semantics=0.3, weight_key
         matched_keywords = 0
 
         for kw, stemmed_kw in zip(jd_skills, jd_skills_stemmed):
-            # Phrase match
             if kw.lower() in resume_text_lower:
                 matched_keywords += 1
                 continue
 
-            # Stem match
             if stemmed_kw in resume_stemmed:
                 matched_keywords += 1
                 continue
 
-            # Partial fuzzy match fallback
             for word in resume_words:
                 if fuzz.partial_ratio(kw.lower(), word) > 90:
                     matched_keywords += 1
@@ -181,7 +177,6 @@ def match_resumes(jd_text, resume_texts, model, weight_semantics=0.3, weight_key
 
 import nltk
 nltk.download('punkt')
-nltk.download('punkt_tab')
 
 jd_text = text["jd.txt"]
 resumes = {k: v for k, v in text.items() if k != "jd.txt"}
