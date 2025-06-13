@@ -1,7 +1,11 @@
-pdfplumber
-spacy
-rapidfuzz
-sentence-transformers
-scikit-learn
-pandas
-numpy
+nltk==3.9.1
+pandas==2.3.0
+regex==2024.11.6
+RapidFuzz==3.13.0
+pdfplumber==0.11.6
+python-docx==1.1.2
+sentence-transformers==4.1.0
+torch==2.7.1
+scikit-learn==1.7.0
+spacy==3.8.7
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0.tar.gz
