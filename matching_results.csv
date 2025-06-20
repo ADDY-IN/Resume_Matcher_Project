@@ -1,9 +1,9 @@
 filename,semantic_score,keyword_score,final_score
-Resume8.txt,91.72,0,27.52
-Resume2.txt,89.19,0,26.76
-Resume4.txt,87.16,0,26.15
-Resume1.txt,83.99,0,25.2
-Resume7.txt,83.02,0,24.91
-Resume6.txt,82.55,0,24.76
-Resume3.txt,81.15,0,24.35
-Resume5.txt,76.48,0,22.95
+Resume2.txt,89.19,94.57,92.96
+Resume4.txt,87.16,88.37,88.01
+Resume3.txt,81.15,75.19,76.98
+Resume7.txt,91.72,65.12,73.1
+Resume8.txt,91.72,65.12,73.1
+Resume1.txt,83.99,49.61,59.93
+Resume6.txt,82.55,47.29,57.87
+Resume5.txt,76.48,0.0,22.95
