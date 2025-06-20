@@ -4,7 +4,7 @@ import pdfplumber
 import re
 import spacy
 nlp = spacy.load("en_core_web_sm")
-from sentence_transformers import SentenceTransformer, util
+from sentence_transformers import SentenceTransformer, util # SentenceTransformer is used for generating embeddings
 model= SentenceTransformer('BAAI/bge-base-en')
 import nltk
 from nltk.corpus import stopwords
@@ -12,7 +12,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
 from rapidfuzz import fuzz
 import pandas as pd
-stemmer = PorterStemmer()
+stemmer = PorterStemmer() #Initialize the Porter Stemmer
 stop_words = set(stopwords.words('english'))
 nltk.download('punkt')
 nltk.download('stopwords')  
@@ -21,7 +21,7 @@ nltk.download('stopwords')
 # EXTRACTING DATA
 
 
-data_folder = "E:\\Resume_Macher_Project\\data"
+data_folder = "E:\\Resume_Macher_Project\\data"  # TODO: Change the path to your current folder. remove static path
 jd_path = os.path.join(data_folder, "jd.pdf")
 
 with pdfplumber.open(jd_path)as pdf:
