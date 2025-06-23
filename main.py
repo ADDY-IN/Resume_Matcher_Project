@@ -6,6 +6,7 @@ import spacy
 nlp = spacy.load("en_core_web_sm")
 from sentence_transformers import SentenceTransformer, util # SentenceTransformer is used for generating embeddings
 model= SentenceTransformer('BAAI/bge-base-en')
+from pathlib import Path
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -17,31 +18,33 @@ stop_words = set(stopwords.words('english'))
 nltk.download('punkt')
 nltk.download('stopwords')  
 
+BASE_DIR = Path(__file__).resolve().parent
+DATA_FOLDER = BASE_DIR / "data"
+OUTPUT_FOLDER = BASE_DIR / "output"
+CLEANED_FOLDER = OUTPUT_FOLDER / "cleaned"
 
+OUTPUT_FOLDER.mkdir(exist_ok=True)
+CLEANED_FOLDER.mkdir(exist_ok=True)
 # EXTRACTING DATA
 
-
-data_folder = "E:\\Resume_Macher_Project\\data"  # TODO: Change the path to your current folder. remove static path
-jd_path = os.path.join(data_folder, "jd.pdf")
-
+jd_path = DATA_FOLDER / "jd.pdf"
 with pdfplumber.open(jd_path)as pdf:
     jd_text = "\n".join([page.extract_text()for page in pdf.pages])
     
 resume_texts = {}
-for file in os.listdir(data_folder):
+for file in os.listdir(DATA_FOLDER):
     if file.endswith(".pdf") and file != "jd.pdf":
-        path = os.path.join(data_folder, file)
+        path = os.path.join(DATA_FOLDER, file)
         with pdfplumber.open(path)as pdf:
             resume_texts[file] = "\n".join([page.extract_text() for page in pdf.pages])
             
-output_folder = "E:\\Resume_Macher_Project\\output"
-os.makedirs(output_folder,exist_ok=True)
 
-with open(os.path.join(output_folder, "jd.txt"), "w", encoding="utf-8")as f:
+
+with open(os.path.join(OUTPUT_FOLDER, "jd.txt"), "w", encoding="utf-8")as f:
     f.write(jd_text.strip())
     
 for filename,text in resume_texts.items():
-    with open(os.path.join(output_folder,filename.replace(".pdf", ".txt")), "w", encoding="utf-8")as f:
+    with open(os.path.join(OUTPUT_FOLDER,filename.replace(".pdf", ".txt")), "w", encoding="utf-8")as f:
         f.write(text.strip())
         
     
@@ -54,22 +57,20 @@ def clean_text(text):
     doc = nlp(text)
     return " ".join([token.text for token in doc if not token.is_stop])
 
-input_folder = "E:\\Resume_Macher_Project\\output"
-output_folder = "E:\\Resume_Macher_Project\\output\\cleaned"
-os.makedirs(output_folder, exist_ok=True)
+os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
-for file in os.listdir(input_folder):
+for file in os.listdir(OUTPUT_FOLDER):
     if file.endswith(".txt"):
-        with open(os.path.join(input_folder,file), "r", encoding="utf-8")as f:
+        with open(os.path.join(OUTPUT_FOLDER,file), "r", encoding="utf-8")as f:
             raw= f.read()
             cleaned = clean_text(raw)
-        with open(os.path.join(output_folder, file), "w", encoding="utf-8")as f:
+        with open(os.path.join(CLEANED_FOLDER, file), "w", encoding="utf-8")as f:
             f.write(cleaned)
             
             
 # EMBEDDINGS
 
-input_folder = "E:\\Resume_Macher_Project\\output\\cleaned"
+input_folder = CLEANED_FOLDER
 text = {}
 for file in os.listdir(input_folder):
     if file.endswith(".txt"):
@@ -161,9 +162,9 @@ results = match_resume(jd_text, resume, model)
 for r in results:
     print(r)
 
-df_results = pd.DataFrame(results)
-df_results.to_csv("matching_results.csv", index=False)   
-print("Results saved to matching_results.csv")
+results_path = BASE_DIR / "matching_results.csv"
+pd.DataFrame(results).to_csv(results_path, index=False)
+print("Results saved to", results_path)
        
 top_matches = [r for r in results if r ["final_score"] > 90]
 for r in top_matches:
