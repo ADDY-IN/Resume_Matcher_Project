@@ -14,9 +14,11 @@ from nltk.stem import PorterStemmer
 from rapidfuzz import fuzz
 import pandas as pd
 stemmer = PorterStemmer() #Initialize the Porter Stemmer
-stop_words = set(stopwords.words('english'))
 nltk.download('punkt')
-nltk.download('stopwords')  
+nltk.download('stopwords') 
+nltk.download("punkt_tab", quiet=True)
+stop_words = set(stopwords.words('english'))
+ 
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_FOLDER = BASE_DIR / "data"
