@@ -287,4 +287,5 @@ if process_btn:
 
 # Footer
 st.markdown("---")
-st.caption("Tip: Threshold ko tweak karke shortlist fast banao. OCR on rakhna scanned resumes ke liye.")
+st.caption("Use the threshold slider to refine shortlists. Enable OCR for scanned PDFs.")
+
